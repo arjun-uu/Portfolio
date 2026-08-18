@@ -10,14 +10,15 @@ export function Footer() {
   return (
     <footer className="h-10 bg-brand-bg-panel border-t border-brand-border-dark flex items-center justify-between px-4 text-[10px] md:text-xs font-mono text-slate-500 select-none z-10 shrink-0">
       {/* Left: Credit */}
-      <div className="flex items-center gap-1.5 font-mono select-none">
-        <span className="text-brand-accent-primary font-bold">code</span>
-        <span className="text-slate-700 font-bold">&amp;&amp;</span>
-        <span className="text-brand-accent-secondary font-bold">build</span>
-        <span className="text-slate-700 font-bold">&amp;&amp;</span>
-        <span className="text-brand-accent-purple font-bold">learn</span>
-        <span className="text-slate-700 font-bold">&amp;&amp;</span>
-        <span className="text-brand-accent-orange font-bold">repeat</span>
+      <div className="flex items-center gap-2 font-mono text-sm select-none">
+        <span className="text-brand-accent-primary">$</span>
+        <span className="text-brand-accent-primary">code</span>
+        <span className="text-slate-400">→</span>
+        <span className="text-brand-accent-secondary">build</span>
+        <span className="text-slate-400">→</span>
+        <span className="text-brand-accent-purple">learn</span>
+        <span className="text-slate-400">→</span>
+        <span className="text-brand-accent-orange">repeat</span>
       </div>
 
       {/* Center: Status & Location (Hidden on mobile) */}
