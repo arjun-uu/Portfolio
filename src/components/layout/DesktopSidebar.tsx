@@ -29,7 +29,7 @@ export function DesktopSidebar() {
       <SidebarSocialLinks />
 
       {/* Quick Interactive Widget */}
-      <div className="mt-auto bg-gradient-to-br from-brand-accent-primary/5 to-brand-accent-secondary/5 border border-brand-border-dark rounded p-3 text-center text-[10px] leading-relaxed font-mono">
+      <div className="mt-auto bg-gradient-to-br from-brand-accent-primary/5 to-brand-accent-secondary/5 border border-brand-border-dark rounded p-2 text-center text-[10px] leading-relaxed font-mono">
         <span className="text-slate-400">Let's </span>
         <span className="text-brand-accent-primary font-bold">build</span>
         <span className="text-slate-400"> something amazing together! 🚀</span>
