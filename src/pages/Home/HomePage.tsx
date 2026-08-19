@@ -20,7 +20,7 @@ export function HomePage() {
       <Card hoverGlow={false} className="p-0 border border-brand-border-dark overflow-hidden font-mono text-xs md:text-sm">
         {/* Terminal Header */}
         <div className="bg-brand-bg-dark/80 px-4 py-2 border-b border-brand-border-dark flex items-center justify-between select-none">
-          <span className="text-slate-500 font-bold">bash - hero.sh</span>
+          <span className="text-slate-500 font-bold">bash - arjun.sh</span>
           <span className="text-slate-600 text-[10px]">utf-8</span>
         </div>
 
