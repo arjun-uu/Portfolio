@@ -100,7 +100,7 @@ export function HomePage() {
               className="flex flex-col gap-3 p-4 md:p-5 text-center font-mono border border-brand-border-dark bg-brand-bg-panel relative overflow-hidden group select-none"
             >
               {/* Subtle background glow icon */}
-              <Icon className="absolute right-3 bottom-3 text-slate-200/10 text-4xl group-hover:scale-110 group-hover:text-slate-200/20 transition-all duration-300 pointer-events-none" />
+              <Icon className="absolute right-2 bottom-2 sm:right-3 sm:bottom-3 text-3xl sm:text-4xl text-slate-400 opacity-[0.06] group-hover:scale-110 group-hover:opacity-15 transition-all duration-300 pointer-events-none" />
 
               <div className="flex items-center justify-center">
                 <span className={`p-2.5 rounded-full border ${stat.color} transition-transform duration-300 group-hover:-translate-y-1`}>

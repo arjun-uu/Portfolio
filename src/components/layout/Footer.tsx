@@ -10,7 +10,7 @@ export function Footer() {
   return (
     <footer className="h-10 bg-brand-bg-panel border-t border-brand-border-dark flex items-center justify-between px-4 text-[10px] md:text-xs font-mono text-slate-500 select-none z-10 shrink-0">
       {/* Left: Credit */}
-      <div className="flex items-center gap-2 font-mono text-sm select-none">
+      <div className="flex items-center gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-xs select-none whitespace-nowrap">
         <span className="text-brand-accent-primary">$</span>
         <span className="text-brand-accent-primary">code</span>
         <span className="text-slate-400">→</span>
@@ -41,8 +41,8 @@ export function Footer() {
       </div>
 
       {/* Right: Clock */}
-      <div className="flex items-center gap-2">
-        <span className="text-slate-300 font-bold tracking-wider">{time}</span>
+      <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap">
+        <span className="text-slate-300 font-bold tracking-wider text-[10px] sm:text-xs">{time}</span>
         <span className="hidden xs:inline-block bg-brand-bg-dark border border-brand-border-dark px-1.5 py-0.5 rounded text-[9px] text-slate-400">
           UTC {utcOffset}
         </span>
