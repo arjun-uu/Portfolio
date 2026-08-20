@@ -17,7 +17,8 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com",
     liveUrl: "https://google.com",
     featured: true,
-    imagePlaceholder: "job_portal_app"
+    imagePlaceholder: "job_portal_app",
+    stats: { commits: 142, hours: 120, coverage: "96.4%", files: 38, linesOfCode: "8.4k" }
   },
   {
     id: "ai-resume-analyzer",
@@ -34,7 +35,8 @@ export const projectsData: Project[] = [
     progress: 70,
     githubUrl: "https://github.com",
     featured: true,
-    imagePlaceholder: "resume_analyzer_app"
+    imagePlaceholder: "resume_analyzer_app",
+    stats: { commits: 88, hours: 75, coverage: "94.2%", files: 19, linesOfCode: "4.2k" }
   },
   {
     id: "dev-analytics",
@@ -51,7 +53,8 @@ export const projectsData: Project[] = [
     progress: 30,
     githubUrl: "https://github.com",
     featured: false,
-    imagePlaceholder: "dev_analytics_app"
+    imagePlaceholder: "dev_analytics_app",
+    stats: { commits: 64, hours: 90, coverage: "92.0%", files: 27, linesOfCode: "5.6k" }
   },
   {
     id: "portfolio-v2",
@@ -69,7 +72,8 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com",
     liveUrl: "https://google.com",
     featured: true,
-    imagePlaceholder: "portfolio_os"
+    imagePlaceholder: "portfolio_os",
+    stats: { commits: 112, hours: 80, coverage: "99.1%", files: 31, linesOfCode: "3.8k" }
   },
   {
     id: "ecommerce-gateway",
@@ -86,7 +90,8 @@ export const projectsData: Project[] = [
     progress: 50,
     githubUrl: "https://github.com",
     featured: false,
-    imagePlaceholder: "gateway_app"
+    imagePlaceholder: "gateway_app",
+    stats: { commits: 53, hours: 65, coverage: "97.5%", files: 14, linesOfCode: "2.9k" }
   },
   {
     id: "task-cli",
@@ -103,6 +108,7 @@ export const projectsData: Project[] = [
     progress: 100,
     githubUrl: "https://github.com",
     featured: false,
-    imagePlaceholder: "task_cli_app"
+    imagePlaceholder: "task_cli_app",
+    stats: { commits: 37, hours: 40, coverage: "95.0%", files: 12, linesOfCode: "1.8k" }
   }
 ];

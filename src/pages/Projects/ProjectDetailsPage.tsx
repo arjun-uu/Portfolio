@@ -1,17 +1,24 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { FiArrowLeft, FiGithub, FiExternalLink, FiCpu, FiAlertCircle, FiSettings, FiSliders, FiFileText } from 'react-icons/fi';
-import { projectsData } from '../../data/projects';
+import { 
+  FiArrowLeft, FiAlertCircle, FiSliders, FiFileText, FiLayers 
+} from 'react-icons/fi';
+import { useProjectDetails } from './hooks/useProjectDetails';
+import { ProjectHeroHeader } from './components/ProjectHeroHeader';
+import { ProjectControlPanel } from './components/ProjectControlPanel';
+import { ReadmeHighlight } from './components/ReadmeHighlight';
+import { JsonHighlight } from './components/JsonHighlight';
+import { YamlHighlight } from './components/YamlHighlight';
+import { LogHighlight } from './components/LogHighlight';
 import { Button } from '../../components/common/Button';
-import { Card } from '../../components/common/Card';
-import { Badge } from '../../components/common/Badge';
 
 export function ProjectDetailsPage() {
-  const { projectId } = useParams<{ projectId: string }>();
-  const navigate = useNavigate();
-
-  // Find project
-  const project = projectsData.find((p) => p.id === projectId);
+  const {
+    project,
+    activeTab,
+    setActiveTab,
+    handleBackToProjects,
+    stats
+  } = useProjectDetails();
 
   if (!project) {
     return (
@@ -19,173 +26,92 @@ export function ProjectDetailsPage() {
         <FiAlertCircle className="mx-auto text-4xl text-rose-500 mb-4 animate-bounce" />
         <h2 className="text-lg font-bold text-white mb-2">Project Not Found</h2>
         <p className="text-slate-400 text-xs mb-6">
-          The requested project ID "{projectId}" does not exist in our repositories list.
+          The requested project ID does not exist in our repositories list.
         </p>
-        <Button variant="secondary" leftIcon={<FiArrowLeft />} onClick={() => navigate('/projects')}>
+        <Button variant="secondary" leftIcon={<FiArrowLeft />} onClick={handleBackToProjects}>
           Back to Projects
         </Button>
       </div>
     );
   }
 
+  const tabs = [
+    { id: 'readme', name: 'README.md', icon: FiFileText, color: 'text-emerald-400' },
+    { id: 'problem', name: 'problem_statement.json', icon: FiAlertCircle, color: 'text-amber-400' },
+    { id: 'architecture', name: 'architecture.yaml', icon: FiLayers, color: 'text-cyan-400' },
+    { id: 'challenges', name: 'challenges.log', icon: FiSliders, color: 'text-rose-400' },
+  ];
+
   return (
-    <div className="max-w-5xl mx-auto flex flex-col gap-6 animate-fade-in-up">
-      {/* Back Nav Button */}
-      <div className="select-none">
+    <div className="max-w-6xl mx-auto flex flex-col gap-6 animate-fade-in-up">
+      {/* Back Nav Breadcrumb */}
+      <div className="select-none flex items-center justify-between border-b border-brand-border-dark/60 pb-3">
         <button
-          onClick={() => navigate('/projects')}
+          onClick={handleBackToProjects}
           className="flex items-center gap-1.5 font-mono text-xs text-slate-500 hover:text-white transition-colors"
         >
-          <FiArrowLeft />
+          <FiArrowLeft className="text-sm" />
           <span>cd ../projects</span>
         </button>
+        <span className="font-mono text-slate-600 text-[10px] hidden md:inline">
+          PATH: ~/portfolio/projects/{project.id}
+        </span>
       </div>
 
-      {/* Main Grid: Info (Left) + Meta/Actions (Right) */}
+      {/* Hero Header Area */}
+      <ProjectHeroHeader project={project} />
+
+      {/* Main Grid: IDE Editor Layout (Left) + Stats/Actions (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* Left Column: Extensive Details */}
-        <div className="lg:col-span-2 flex flex-col gap-6">
-          {/* Title Header */}
-          <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel/60 p-6 flex flex-col gap-4">
-            <div className="flex items-center gap-2 font-mono text-[10px] text-slate-500 select-none uppercase tracking-wider">
-              <span>{project.category}</span>
-              <span>·</span>
-              <span className="text-brand-accent-primary">{project.status}</span>
-            </div>
-            
-            <h1 className="text-xl md:text-3xl font-extrabold text-white leading-tight font-mono select-none">
-              {project.name}
-            </h1>
-            
-            <p className="text-slate-300 text-xs md:text-sm leading-relaxed">
-              {project.longDescription || project.description}
-            </p>
-          </Card>
-
-          {/* Problem & Solution */}
-          {project.problem && project.solution && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel flex flex-col gap-3">
-                <div className="flex items-center gap-2 text-brand-accent-orange/90 font-mono text-xs select-none">
-                  <FiAlertCircle className="text-sm" />
-                  <span className="font-bold">THE PROBLEM</span>
-                </div>
-                <p className="text-slate-400 text-xs leading-relaxed font-sans">
-                  {project.problem}
-                </p>
-              </Card>
-              <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel flex flex-col gap-3">
-                <div className="flex items-center gap-2 text-brand-accent-primary font-mono text-xs select-none">
-                  <FiCpu className="text-sm" />
-                  <span className="font-bold">THE SOLUTION</span>
-                </div>
-                <p className="text-slate-400 text-xs leading-relaxed font-sans">
-                  {project.solution}
-                </p>
-              </Card>
-            </div>
-          )}
-
-          {/* Architecture Details */}
-          {project.architecture && (
-            <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-brand-accent-secondary font-mono text-xs select-none">
-                <FiSettings className="text-sm animate-spin-slow" />
-                <span className="font-bold">SYSTEM ARCHITECTURE</span>
-              </div>
-              <p className="text-slate-400 text-xs leading-relaxed font-sans">
-                {project.architecture}
-              </p>
-            </Card>
-          )}
-
-          {/* Engineering Challenges */}
-          {project.challenges && (
-            <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-brand-accent-purple font-mono text-xs select-none">
-                <FiSliders className="text-sm" />
-                <span className="font-bold">ENGINEERING CHALLENGES & RESOLUTIONS</span>
-              </div>
-              <p className="text-slate-400 text-xs leading-relaxed font-sans">
-                {project.challenges}
-              </p>
-            </Card>
-          )}
-        </div>
-
-        {/* Right Column: Meta Details, Tech, Actions */}
-        <div className="flex flex-col gap-6">
+        {/* Left Column: Interactive IDE Editor Workspace */}
+        <div className="lg:col-span-2 flex flex-col border border-brand-border-dark bg-brand-bg-panel/20 rounded-lg overflow-hidden relative min-h-[460px]">
           
-          {/* Actions & Links Card */}
-          <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel flex flex-col gap-4 font-mono select-none">
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">// REPOSITORY LINKS</h3>
-            
-            <div className="flex flex-col gap-2.5">
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-brand-bg-dark border border-brand-border-dark hover:border-slate-600 px-4 py-2.5 rounded text-xs text-white hover:bg-brand-bg-panelLight transition-all w-full"
-                >
-                  <FiGithub />
-                  <span>Explore Repository</span>
-                </a>
-              )}
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-brand-accent-primary hover:bg-brand-accent-primary/90 px-4 py-2.5 rounded text-xs text-brand-bg-dark font-bold shadow-glow-primary transition-all w-full"
-                >
-                  <FiExternalLink />
-                  <span>Launch Live App</span>
-                </a>
-              )}
-              {!project.githubUrl && !project.liveUrl && (
-                <p className="text-[10px] text-slate-500 text-center py-2">
-                  No public web links deployment config setup.
-                </p>
-              )}
-            </div>
-          </Card>
+          {/* Tab Header bar (Segmented Pills style with separators) */}
+          <div className="flex items-center gap-2 p-2 bg-slate-950/60 border-b border-brand-border-dark select-none overflow-x-auto scrollbar-thin">
+            {tabs.map((tab, index) => {
+              const TabIcon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <React.Fragment key={tab.id}>
+                  {index > 0 && (
+                    <span className="h-4 w-[1px] bg-brand-border-dark/60 select-none pointer-events-none mx-0.5 animate-fade-in" />
+                  )}
+                  <button
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex items-center gap-2 px-3.5 py-1.5 rounded-md font-mono text-xs transition-all duration-200 whitespace-nowrap border ${
+                      isActive 
+                        ? 'bg-brand-accent-primary/10 text-brand-accent-primary border-brand-accent-primary/35 font-bold shadow-[0_0_12px_rgba(16,185,129,0.06)]' 
+                        : 'text-slate-500 border-transparent hover:bg-slate-900/50 hover:text-slate-300'
+                    }`}
+                  >
+                    <TabIcon className={`text-xs ${tab.color}`} />
+                    <span>{tab.name}</span>
+                  </button>
+                </React.Fragment>
+              );
+            })}
+          </div>
 
-          {/* Tech Stack Specs */}
-          <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel flex flex-col gap-4">
-            <h3 className="text-xs font-bold text-slate-500 font-mono select-none uppercase tracking-wider">
-              // SPECIFICATION STACK
-            </h3>
-            <div className="flex flex-wrap gap-2 select-none">
-              {project.technologies.map((tech) => (
-                <Badge key={tech} variant="primary" size="md">
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-          </Card>
+          {/* Sub-header Path bar */}
+          <div className="bg-slate-900/20 px-4 py-1.5 border-b border-brand-border-dark/30 font-mono text-[9px] text-slate-500 select-none">
+            <span>src/projects/{project.id}/{tabs.find(t => t.id === activeTab)?.name}</span>
+          </div>
 
-          {/* Mock Screenshot Placeholder */}
-          <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel/40 p-0 overflow-hidden flex flex-col relative aspect-[4/3] items-center justify-center text-center p-4">
-            {/* Terminal layout decoration inside screenshot */}
-            <div className="absolute top-0 left-0 right-0 h-6 bg-slate-900 border-b border-brand-border-dark flex items-center px-3 gap-1 select-none pointer-events-none">
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-            </div>
-            
-            <FiFileText className="text-slate-800 text-5xl mb-2" />
-            <span className="font-mono text-[10px] text-slate-600 uppercase tracking-widest select-none font-bold">
-              Deployment Blueprint Mockup
-            </span>
-            <span className="font-mono text-[9px] text-slate-500 mt-1 select-none">
-              {project.id}_spec_layout.xml
-            </span>
-          </Card>
+          {/* Editor Body */}
+          <div className="flex-1 p-5 md:p-6 overflow-y-auto max-h-[500px]">
+            {activeTab === 'readme' && <ReadmeHighlight project={project} />}
+            {activeTab === 'problem' && <JsonHighlight project={project} />}
+            {activeTab === 'architecture' && <YamlHighlight content={project.architecture || ''} project={project} />}
+            {activeTab === 'challenges' && <LogHighlight project={project} />}
+          </div>
         </div>
+
+        {/* Right Column: Unified Control Panel */}
+        {stats && <ProjectControlPanel project={project} stats={stats} />}
       </div>
     </div>
   );
 }
+
 export default ProjectDetailsPage;

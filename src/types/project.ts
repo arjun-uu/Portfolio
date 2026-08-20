@@ -1,3 +1,11 @@
+export interface ProjectStats {
+  commits: number;
+  hours: number;
+  coverage: string;
+  files: number;
+  linesOfCode: string;
+}
+
 export interface Project {
   id: string;
   name: string;
@@ -15,4 +23,5 @@ export interface Project {
   liveUrl?: string;
   featured: boolean;
   imagePlaceholder?: string;
+  stats?: ProjectStats;
 }

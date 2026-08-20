@@ -40,7 +40,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
       />
 
       {/* Drawer Container */}
-      <div className="relative w-72 max-w-[85vw] bg-brand-bg-panel border-l border-brand-border-dark h-full flex flex-col p-4 gap-6 animate-slide-in-right z-10 shadow-2xl">
+      <div className="relative w-72 max-w-[85vw] bg-brand-bg-panel border-l border-brand-border-dark h-full flex flex-col p-4 gap-6 animate-slide-in-right z-10 shadow-2xl overflow-y-auto">
         
         {/* Drawer Header */}
         <div className="flex items-center justify-between pb-3 border-b border-brand-border-dark/40 font-mono">
