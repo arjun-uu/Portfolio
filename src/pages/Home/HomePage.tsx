@@ -7,8 +7,10 @@ import { Card } from '../../components/common/Card';
 import { useHome } from './hooks/useHome';
 import { EditorMockup } from './components/EditorMockup';
 import { cn } from '../../utils/cn';
+import { useTheme } from '../../hooks/useTheme';
 
 export function HomePage() {
+  const { resolvedTheme } = useTheme();
   const {
     navigate,
     quote,
@@ -48,10 +50,14 @@ export function HomePage() {
 
             <div className="font-sans flex flex-col gap-4">
               <h2 className="text-3xl md:text-5xl font-mono font-bold tracking-tight leading-normal pb-2 select-none flex items-center">
-                <span className="bg-gradient-to-r from-brand-accent-primary to-brand-accent-secondary bg-clip-text text-transparent lowercase">
+                <span className={cn(
+                  "bg-gradient-to-r bg-clip-text text-transparent font-extrabold transition-all duration-300",
+                  resolvedTheme === 'dark' 
+                    ? "from-white via-slate-200 to-brand-accent-primary drop-shadow-[0_0_15px_rgba(16,185,129,0.15)]" 
+                    : "from-slate-50 via-slate-200 to-brand-accent-primary"
+                )}>
                   {siteConfig.name}
                 </span>
-                <span className="text-brand-accent-primary ml-0.5 animate-cursor-blink">_</span>
               </h2>
               <div className="flex items-center gap-2 text-brand-accent-primary font-mono text-sm md:text-base font-bold">
                 <span>{`[${siteConfig.role}]`}</span>

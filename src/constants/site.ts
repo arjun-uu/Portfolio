@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Arjun",
+  name: "Arjun Kumar",
   username: "arjun",
   domain: "portfolio",
   role: "Software Developer",
