@@ -19,9 +19,17 @@ export function ReadmeHighlight({ project }: ReadmeHighlightProps) {
 
       {/* Narrative */}
       <div>
-        <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans font-normal">
-          {project.longDescription || project.description}
-        </p>
+        {Array.isArray(project.longDescription) ? (
+          <ul className="list-disc pl-5 flex flex-col gap-2 text-slate-300 text-xs md:text-sm font-sans font-normal leading-relaxed">
+            {project.longDescription.map((point, idx) => (
+              <li key={idx}>{point}</li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans font-normal">
+            {project.longDescription || project.description}
+          </p>
+        )}
       </div>
 
       {/* Specifications list */}

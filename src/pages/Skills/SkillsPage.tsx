@@ -126,7 +126,7 @@ export function SkillsPage() {
               </div>
 
               {/* Skills Badge Container */}
-              <div className="flex flex-wrap gap-2 mt-4 flex-1">
+              <div className="flex flex-wrap items-start content-start gap-2 mt-4 flex-1">
                 {displayedSkills.map((skill) => (
                   <Badge
                     key={skill.name}

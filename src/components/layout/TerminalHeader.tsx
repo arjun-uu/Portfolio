@@ -17,7 +17,6 @@ export function TerminalHeader({ onMenuToggle, onCommandPaletteToggle }: Termina
 
   return (
     <header className="h-14 bg-brand-bg-panel border-b border-brand-border-dark flex items-center justify-between px-4 sticky top-0 z-40 select-none">
-      {/* Left: Window Dots & Terminal Prompt */}
       <div className="flex items-center gap-3">
         {/* macOS Dots */}
         <div className="flex gap-1.5 mr-2">

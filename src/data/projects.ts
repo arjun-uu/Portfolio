@@ -5,11 +5,31 @@ export const projectsData: Project[] = [
     id: "job-portal",
     name: "Enterprise Job Portal",
     description: "A full-stack recruitment platform managing resumes, job matches, and applicant tracking with automated alerts.",
-    longDescription: "The Enterprise Job Portal is a high-availability applicant tracking system (ATS) and recruitment platform. It streamlines candidate selection by matching resumes to job postings, allowing companies to post open positions, and enabling candidates to track their application statuses in real-time.",
-    problem: "Recruiters and hiring managers spend hours manually filtering hundreds of CVs. Existing platforms lack automated pipeline statuses, resulting in communication gaps and long hiring cycles.",
-    solution: "We engineered a clean status-aware application pipeline using ASP.NET Core APIs and React. Candidates get instant feedback on their status updates, and hiring managers can filter applications instantly using advanced search predicates.",
-    architecture: "Built with a decoupled React SPA frontend communicating with a RESTful ASP.NET Core backend. Entity Framework Core serves as the ORM, linking data to SQL Server. JWT token-based authentication handles roles (Candidates vs. Recruiters) securely.",
-    challenges: "Handling large PDF resume uploads and processing them efficiently without interrupting client requests. We resolved this by implementing asynchronous file handling and chunked uploads, coupled with an off-thread parsing daemon.",
+    longDescription: [
+      "High-availability applicant tracking system (ATS) and recruitment platform.",
+      "Streamlines candidate selection by matching CV uploads to active job descriptions.",
+      "Allows companies to publish openings and manage stages of their hiring pipeline.",
+      "Enables candidates to track applications and status updates in real-time."
+    ],
+    problem: [
+      "Recruiters manually screen hundreds of CV files daily, causing massive review backlogs.",
+      "Communication gaps leave candidates unaware of their current pipeline status.",
+      "Lack of status-aware pipelines extends average company hiring cycles."
+    ],
+    solution: [
+      "Engineered an automated status-aware candidate pipeline using React and ASP.NET Core.",
+      "Integrated push alerts notifying users immediately of application changes.",
+      "Implemented fast search filters to screen candidates using advanced predicates."
+    ],
+    architecture: [
+      "Decoupled React Single Page Application communicating with a RESTful C# backend.",
+      "Entity Framework Core ORM mapping system entities to a Microsoft SQL Server database.",
+      "Role-based security (Recruiters vs. Candidates) utilizing secure JWT token filters."
+    ],
+    challenges: [
+      "Processing concurrent large PDF file uploads without blocking server response threads.",
+      "Solved via asynchronous streaming, chunked uploads, and off-thread background parsing."
+    ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "ASP.NET Core", "SQL Server", "EF Core"],
     category: "Full Stack",
     status: "Completed",
@@ -24,11 +44,29 @@ export const projectsData: Project[] = [
     id: "ai-resume-analyzer",
     name: "AI Resume Analyzer & Matcher",
     description: "A smart assistant that parses PDF resumes using OCR and evaluates match scores against target job descriptions.",
-    longDescription: "The AI Resume Analyzer parses CVs to identify key skills, career timeline, and domain expertise. It matches candidate profiles against a target job description and provides optimization feedback.",
-    problem: "Applicants fail automated screening because their resumes do not contain matching keywords, even if they have the skills.",
-    solution: "Built a Python-based parser with FastAPI and OpenAI. The frontend allows uploading a resume and pasting a job posting, immediately outputting a compatibility report and suggestions.",
-    architecture: "FastAPI server running Spacy and LangChain for resume NLP tokenization. The React client renders interactive score charts and suggests additions.",
-    challenges: "Reducing high API latency from large LLM prompts. Implemented prompt optimization, client-side streaming response rendering, and Redis caching for recurring search phrases.",
+    longDescription: [
+      "Smart resume analytics engine parsing CV metadata using PDF processing and NLP.",
+      "Identifies candidate key skills, career timeline blocks, and core domains.",
+      "Matches candidate profiles against target job descriptions to output score ratings.",
+      "Provides developers with automated feedback for keyword optimizations."
+    ],
+    problem: [
+      "Applicant resumes are frequently filtered out by automated screening bots.",
+      "Candidates struggle to align their CV keywords with target job posting parameters."
+    ],
+    solution: [
+      "Built a Python-based resume parsing server utilizing FastAPI and OpenAI API.",
+      "Configured a dashboard client rendering compatibility charts and suggestions."
+    ],
+    architecture: [
+      "FastAPI server running SpaCy and LangChain for CV token parsing.",
+      "OpenAI integrations running prompt-engineered compatibility tests.",
+      "React client rendering dynamic analytics reports using vector metrics."
+    ],
+    challenges: [
+      "Mitigating high API network latency during long LLM completion queries.",
+      "Resolved with query optimizations, Redis caches, and client-side streaming response feeds."
+    ],
     technologies: ["React", "FastAPI", "Python", "Tailwind CSS", "OpenAI API"],
     category: "AI",
     status: "Building",
@@ -42,11 +80,28 @@ export const projectsData: Project[] = [
     id: "dev-analytics",
     name: "Developer Analytics Dashboard",
     description: "A SaaS tool integrating GitHub and Jira metrics to calculate individual developer cycle times and commit trends.",
-    longDescription: "A productivity metrics platform for software engineering teams. It connects to developer platforms to visualize cycle time, lead time to production, review latency, and repository health.",
-    problem: "Engineering leads have no clear data-driven view of development bottlenecks and pull request review blockages.",
-    solution: "We aggregate GitHub webhook payloads and Jira events into a unified dashboard, showing actionable latency charts.",
-    architecture: "Node.js background workers ingest webhook feeds into a PostgreSQL database. A React dashboard visualizes charts with custom-built lightweight SVG graphing layers.",
-    challenges: "Avoiding GitHub API rate limits during bulk organization synchronizations. We implemented a token-rotating queue mechanism and optimized database queries to perform incremental updates.",
+    longDescription: [
+      "Engineering metrics dashboard for software delivery and team productivity.",
+      "Visualizes delivery lead times, commit frequency, and PR approval latencies.",
+      "Identifies bottlenecks in software review stages and repository lifecycles."
+    ],
+    problem: [
+      "Engineering leads lack clear metrics to identify bottlenecks in development stages.",
+      "Pull request reviews suffer long, untracked latencies before production releases."
+    ],
+    solution: [
+      "Aggregated GitHub webhooks and Jira events into a central indexing dashboard.",
+      "Rendered interactive latency trendlines, review times, and repository averages."
+    ],
+    architecture: [
+      "Node.js background ingest workers collecting real-time webhooks.",
+      "PostgreSQL relational database storing delivery and repository metrics.",
+      "React frontend dashboard plotting analytics using custom SVG graph overlays."
+    ],
+    challenges: [
+      "Avoiding rate-limiting restrictions during massive initial organization sync queries.",
+      "Solved with token-rotation queues, batch endpoints, and incremental sync updates."
+    ],
     technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
     category: "Frontend",
     status: "Building",
@@ -60,11 +115,28 @@ export const projectsData: Project[] = [
     id: "portfolio-v2",
     name: "Developer Portfolio OS v2",
     description: "The current system: a dashboard-styled terminal developer environment showcasing skills, logs, and projects.",
-    longDescription: "A developer-focused personal site designed with a retro-futuristic console theme. It displays work experiences and projects as mock repository systems.",
-    problem: "Generic static template portfolios look uninspired and fail to demonstrate actual front-end capability.",
-    solution: "Crafted this custom design combining a functional command palette, interactive routing, theme toggles, and status timelines.",
-    architecture: "Pure React 18 and TypeScript with Tailwind CSS utility classes. Client-side navigation handled via react-router-dom, utilizing React Icons for UI aesthetics.",
-    challenges: "Achieving complex responsive grid arrangements and overlays on older mobile screens. Resolved with mobile-first CSS flexbox and drawer architectures.",
+    longDescription: [
+      "Interactive retro-futuristic portfolio styled as a developer terminal OS.",
+      "Presents professional experience, timeline logs, and projects in tabs.",
+      "Implements dynamic custom theme toggles and a global command palette."
+    ],
+    problem: [
+      "Generic template portfolios look static and fail to showcase active front-end skill.",
+      "Navigating flat sites feels uninspired to technical recruiters."
+    ],
+    solution: [
+      "Crafted an interactive terminal mock layout using custom CSS variables.",
+      "Integrated search index palettes, route transitions, and responsive drawers."
+    ],
+    architecture: [
+      "Pure React client built on Vite and TypeScript with Tailwind CSS utility structures.",
+      "React Router DOM managing deep paths with browser history sync.",
+      "Global Audio Context providing persistent background music streams."
+    ],
+    challenges: [
+      "Aligning multi-column card sizes and complex grid heights across mobile layouts.",
+      "Solved with CSS Flexbox stretching models and dynamic responsive grid tracks."
+    ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     category: "Frontend",
     status: "Completed",
@@ -79,11 +151,27 @@ export const projectsData: Project[] = [
     id: "ecommerce-gateway",
     name: "E-Commerce Microservices Gateway",
     description: "An API gateway supporting JWT routing, request rate limiting, and caching for a distributed catalog and checkout system.",
-    longDescription: "A high-throughput API gateway facilitating unified routing for customer checkouts, cart items, inventory queries, and catalog listings.",
-    problem: "Microservice sprawl leads to cross-cutting concerns (logging, auth, rate limiting) being duplicated in every service.",
-    solution: "Centralized routing using YARP (Yet Another Reverse Proxy) in .NET Core. Configured centralized rate limiting and token validation.",
-    architecture: "Built on .NET Core with Redis backend for distributed token blacklisting and rate-limit counters.",
-    challenges: "Maintaining sub-10ms routing latency under high concurrent traffic spikes. Configured custom memory caches and efficient pipeline passing in the YARP middleware.",
+    longDescription: [
+      "High-throughput API reverse-proxy orchestrating microservice communication.",
+      "Unifies requests for checkout pipelines, shopping carts, and item listings.",
+      "Applies cross-cutting configurations to simplify core service layers."
+    ],
+    problem: [
+      "Duplicating security, rate-limiting, and request logging inside every single service.",
+      "High network overhead and complexity for client applications fetching data."
+    ],
+    solution: [
+      "Centralized traffic routing using YARP (Yet Another Reverse Proxy) in .NET Core.",
+      "Configured unified rate-limit rules, logging middleware, and token validators."
+    ],
+    architecture: [
+      "Built on .NET Core framework executing centralized request pipeline filters.",
+      "Redis memory database caching blacklist flags and request limit counters."
+    ],
+    challenges: [
+      "Minimizing API proxy hop latency below 10ms under heavy parallel request loads.",
+      "Solved with customized memory caches and optimized routing maps in YARP."
+    ],
     technologies: [".NET", "ASP.NET Core", "Redis", "Docker"],
     category: "Backend",
     status: "Paused",
@@ -97,11 +185,27 @@ export const projectsData: Project[] = [
     id: "task-cli",
     name: "DevTask CLI System",
     description: "A C# command line utility to manage developer boards, backlog sprints, and automated git branch formatting.",
-    longDescription: "A lightweight terminal tool facilitating swift local project management. It updates backlog tickets, logs development hours, and creates Git branches mapped to ticket IDs automatically.",
-    problem: "Context switching between the IDE terminal and web browser project boards disrupts developer focus.",
-    solution: "A local terminal executable written in C# that interacts with Jira/GitHub APIs, allowing updates with short syntax commands directly.",
-    architecture: "Standalone .NET Console Application compiled as a global tool. Standard JSON file-based local caching speeds up operation.",
-    challenges: "Parsing complex command syntax structures natively. Resolved by using the System.CommandLine package to build dynamic command auto-completions.",
+    longDescription: [
+      "Developer command line dashboard supporting rapid task and issue workflows.",
+      "Updates active board tickets, registers logged hours, and creates Git branches.",
+      "Maintains context alignment by bringing project updates into the code editor."
+    ],
+    problem: [
+      "Constantly switching tabs between code terminal and web backlog boards breaks flow.",
+      "Manual Git branch creation and naming conventions are prone to typos."
+    ],
+    solution: [
+      "C# terminal executable interacting with Jira and GitHub APIs directly.",
+      "Configured branch generator matching branch tags with ticket IDs automatically."
+    ],
+    architecture: [
+      "Standalone .NET Console Application compiled as a global CLI system utility.",
+      "Standard local JSON file caches speeding up repeated index fetches."
+    ],
+    challenges: [
+      "Resolving and parsing recursive command arguments and flags natively.",
+      "Solved using System.CommandLine library to enforce dynamic autocomplete definitions."
+    ],
     technologies: ["C#", ".NET", "REST APIs"],
     category: "Other",
     status: "Completed",

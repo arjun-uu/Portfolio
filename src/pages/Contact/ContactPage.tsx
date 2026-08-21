@@ -27,77 +27,79 @@ export function ContactPage() {
         badge="Socket"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Left/Center Column: The Form */}
-        <div className="md:col-span-2 flex flex-col gap-4">
-          <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel p-6">
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 font-mono text-xs">
-              
-              {/* Field: Name */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="name" className="text-slate-400 font-bold flex items-center gap-1.5 select-none">
-                  <FiUser />
-                  <span>SENDER_NAME:</span>
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  placeholder="e.g., Arjun Dev"
-                  className="bg-brand-bg-dark border border-brand-border-dark focus:border-brand-accent-primary/60 focus:ring-1 focus:ring-brand-accent-primary/40 rounded p-2.5 text-white placeholder-slate-600 focus:outline-none"
-                />
-                {errors.name && (
-                  <span className="text-[10px] text-rose-500 font-bold">{errors.name}</span>
-                )}
-              </div>
+      {/* Grid Layout designed to stretch and align left/right columns evenly */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        {/* Left Column: The Form */}
+        <div className="md:col-span-2 flex">
+          <Card hoverGlow={false} className="w-full border border-brand-border-dark bg-brand-bg-panel p-6 flex flex-col justify-between">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 font-mono text-xs h-full justify-between">
+              <div className="flex flex-col gap-4">
+                {/* Field: Name */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="name" className="text-slate-400 font-bold flex items-center gap-1.5 select-none">
+                    <FiUser className="text-brand-accent-secondary" />
+                    <span>SENDER_NAME:</span>
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    placeholder="e.g., Arjun Dev"
+                    className="bg-brand-bg-dark border border-brand-border-dark focus:border-brand-accent-primary/60 focus:ring-1 focus:ring-brand-accent-primary/40 rounded p-2.5 text-white placeholder-slate-600 focus:outline-none"
+                  />
+                  {errors.name && (
+                    <span className="text-[10px] text-rose-500 font-bold mt-0.5">{errors.name}</span>
+                  )}
+                </div>
 
-              {/* Field: Email */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="email" className="text-slate-400 font-bold flex items-center gap-1.5 select-none">
-                  <FiMail />
-                  <span>SENDER_EMAIL:</span>
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  placeholder="e.g., sender@example.com"
-                  className="bg-brand-bg-dark border border-brand-border-dark focus:border-brand-accent-primary/60 focus:ring-1 focus:ring-brand-accent-primary/40 rounded p-2.5 text-white placeholder-slate-600 focus:outline-none"
-                />
-                {errors.email && (
-                  <span className="text-[10px] text-rose-500 font-bold">{errors.email}</span>
-                )}
-              </div>
+                {/* Field: Email */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="email" className="text-slate-400 font-bold flex items-center gap-1.5 select-none">
+                    <FiMail className="text-brand-accent-secondary" />
+                    <span>SENDER_EMAIL:</span>
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    placeholder="e.g., sender@example.com"
+                    className="bg-brand-bg-dark border border-brand-border-dark focus:border-brand-accent-primary/60 focus:ring-1 focus:ring-brand-accent-primary/40 rounded p-2.5 text-white placeholder-slate-600 focus:outline-none"
+                  />
+                  {errors.email && (
+                    <span className="text-[10px] text-rose-500 font-bold mt-0.5">{errors.email}</span>
+                  )}
+                </div>
 
-              {/* Field: Message */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="message" className="text-slate-400 font-bold flex items-center gap-1.5 select-none">
-                  <FiMessageSquare />
-                  <span>MESSAGE_PAYLOAD:</span>
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  value={form.message}
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  placeholder="Type your connection details here (min 10 characters)..."
-                  className="bg-brand-bg-dark border border-brand-border-dark focus:border-brand-accent-primary/60 focus:ring-1 focus:ring-brand-accent-primary/40 rounded p-2.5 text-white placeholder-slate-600 focus:outline-none resize-none"
-                />
-                {errors.message && (
-                  <span className="text-[10px] text-rose-500 font-bold">{errors.message}</span>
-                )}
+                {/* Field: Message */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="message" className="text-slate-400 font-bold flex items-center gap-1.5 select-none">
+                    <FiMessageSquare className="text-brand-accent-secondary" />
+                    <span>MESSAGE_PAYLOAD:</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    value={form.message}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    placeholder="Type your connection details here (min 10 characters)..."
+                    className="bg-brand-bg-dark border border-brand-border-dark focus:border-brand-accent-primary/60 focus:ring-1 focus:ring-brand-accent-primary/40 rounded p-2.5 text-white placeholder-slate-600 focus:outline-none resize-none"
+                  />
+                  {errors.message && (
+                    <span className="text-[10px] text-rose-500 font-bold mt-0.5">{errors.message}</span>
+                  )}
+                </div>
               </div>
 
               {/* Submit Button */}
-              <div className="pt-2 select-none">
+              <div className="pt-4 select-none">
                 <Button
                   type="submit"
                   variant="primary"
@@ -112,53 +114,58 @@ export function ContactPage() {
           </Card>
         </div>
 
-        {/* Right Column: Connection Meta */}
-        <div className="flex flex-col gap-6 select-none font-mono">
-          {/* Connection Specs */}
-          <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel/40 p-5 flex flex-col gap-4">
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">// CONNECTION SPECS</h3>
-            
-            <div className="flex flex-col gap-3.5 text-xs text-slate-400">
-              <div className="flex gap-2.5 items-start">
-                <FiMapPin className="text-brand-accent-secondary mt-0.5 shrink-0" />
-                <div className="flex flex-col">
-                  <span className="text-white font-bold">Node Location:</span>
-                  <span className="text-[11px] font-sans mt-0.5 text-slate-400">{siteConfig.location}</span>
+        {/* Right Column: Connection Specs & Social Profiles consolidated in a single card to match layout height */}
+        <div className="md:col-span-1 flex">
+          <Card hoverGlow={false} className="w-full border border-brand-border-dark bg-brand-bg-panel/40 p-6 flex flex-col justify-between gap-6 font-mono">
+            {/* Top section: Connection Specs */}
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">// CONNECTION SPECS</h3>
+              
+              <div className="flex flex-col gap-3.5 text-xs text-slate-400">
+                <div className="flex gap-2.5 items-start">
+                  <FiMapPin className="text-brand-accent-secondary mt-0.5 shrink-0" />
+                  <div className="flex flex-col">
+                    <span className="text-white font-bold">Node Location:</span>
+                    <span className="text-[11px] font-sans mt-0.5 text-slate-400">{siteConfig.location}</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex gap-2.5 items-start">
-                <FiMail className="text-brand-accent-secondary mt-0.5 shrink-0" />
-                <div className="flex flex-col">
-                  <span className="text-white font-bold">Target Inbound:</span>
-                  <a href={`mailto:${siteConfig.email}`} className="text-[11px] text-brand-accent-primary hover:underline mt-0.5 break-all">
-                    {siteConfig.email}
-                  </a>
+                <div className="flex gap-2.5 items-start">
+                  <FiMail className="text-brand-accent-secondary mt-0.5 shrink-0" />
+                  <div className="flex flex-col">
+                    <span className="text-white font-bold">Target Inbound:</span>
+                    <a href={`mailto:${siteConfig.email}`} className="text-[11px] text-brand-accent-primary hover:underline mt-0.5 break-all">
+                      {siteConfig.email}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </Card>
 
-          {/* Social Profiles */}
-          <Card hoverGlow={false} className="border border-brand-border-dark bg-brand-bg-panel/40 p-5 flex flex-col gap-4">
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">// SOCIAL NETWORKS</h3>
-            
-            <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-              {socialLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-2 bg-brand-bg-panel border border-brand-border-dark/65 rounded text-slate-400 hover:text-brand-accent-primary hover:border-brand-accent-primary/40 transition-all select-none"
-                  >
-                    <Icon className="text-sm shrink-0" />
-                    <span>{link.name}</span>
-                  </a>
-                );
-              })}
+            {/* Visual separator */}
+            <div className="border-t border-brand-border-dark/65 w-full" />
+
+            {/* Bottom section: Social Networks */}
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">// SOCIAL NETWORKS</h3>
+              
+              <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                {socialLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-3 py-2 bg-brand-bg-panel border border-brand-border-dark/65 rounded text-slate-400 hover:text-brand-accent-primary hover:border-brand-accent-primary/40 transition-all select-none"
+                    >
+                      <Icon className="text-sm shrink-0" />
+                      <span>{link.name}</span>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </Card>
         </div>

@@ -10,11 +10,11 @@ export interface Project {
   id: string;
   name: string;
   description: string;
-  longDescription?: string;
-  problem?: string;
-  solution?: string;
-  architecture?: string;
-  challenges?: string;
+  longDescription?: string | string[];
+  problem?: string | string[];
+  solution?: string | string[];
+  architecture?: string | string[];
+  challenges?: string | string[];
   technologies: string[];
   category: "Frontend" | "Backend" | "Full Stack" | "AI" | "Other";
   status: "Planned" | "Building" | "Paused" | "Completed";

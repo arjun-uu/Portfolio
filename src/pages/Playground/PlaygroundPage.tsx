@@ -22,10 +22,10 @@ export function PlaygroundPage() {
       />
 
       {/* Code Editor Style Tab selector */}
-      <div className="flex border-b border-brand-border-dark font-mono text-xs select-none">
+      <div className="flex overflow-x-auto scrollbar-thin border-b border-brand-border-dark font-mono text-xs select-none">
         <button
           onClick={() => setActiveTab('jwt')}
-          className={`px-4 py-2.5 border-t-2 border-x transition-all relative top-[1px] rounded-t flex items-center gap-1.5 ${
+          className={`px-4 py-2.5 border-t-2 border-x transition-all relative top-[1px] rounded-t flex items-center gap-1.5 shrink-0 ${
             activeTab === 'jwt'
               ? 'bg-brand-bg-panel border-x-brand-border-dark border-t-brand-accent-primary text-brand-accent-primary font-bold'
               : 'bg-brand-bg-panel/40 border-x-transparent border-t-transparent text-slate-500 hover:text-slate-300'
@@ -36,7 +36,7 @@ export function PlaygroundPage() {
 
         <button
           onClick={() => setActiveTab('regex')}
-          className={`px-4 py-2.5 border-t-2 border-x transition-all relative top-[1px] rounded-t flex items-center gap-1.5 ${
+          className={`px-4 py-2.5 border-t-2 border-x transition-all relative top-[1px] rounded-t flex items-center gap-1.5 shrink-0 ${
             activeTab === 'regex'
               ? 'bg-brand-bg-panel border-x-brand-border-dark border-t-brand-accent-primary text-brand-accent-primary font-bold'
               : 'bg-brand-bg-panel/40 border-x-transparent border-t-transparent text-slate-500 hover:text-slate-300'
@@ -47,7 +47,7 @@ export function PlaygroundPage() {
 
         <button
           onClick={() => setActiveTab('password')}
-          className={`px-4 py-2.5 border-t-2 border-x transition-all relative top-[1px] rounded-t flex items-center gap-1.5 ${
+          className={`px-4 py-2.5 border-t-2 border-x transition-all relative top-[1px] rounded-t flex items-center gap-1.5 shrink-0 ${
             activeTab === 'password'
               ? 'bg-brand-bg-panel border-x-brand-border-dark border-t-brand-accent-primary text-brand-accent-primary font-bold'
               : 'bg-brand-bg-panel/40 border-x-transparent border-t-transparent text-slate-500 hover:text-slate-300'
@@ -58,7 +58,7 @@ export function PlaygroundPage() {
 
         <button
           onClick={() => setActiveTab('json')}
-          className={`px-4 py-2.5 border-t-2 border-x transition-all relative top-[1px] rounded-t flex items-center gap-1.5 ${
+          className={`px-4 py-2.5 border-t-2 border-x transition-all relative top-[1px] rounded-t flex items-center gap-1.5 shrink-0 ${
             activeTab === 'json'
               ? 'bg-brand-bg-panel border-x-brand-border-dark border-t-brand-accent-primary text-brand-accent-primary font-bold'
               : 'bg-brand-bg-panel/40 border-x-transparent border-t-transparent text-slate-500 hover:text-slate-300'

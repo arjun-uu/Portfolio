@@ -94,7 +94,7 @@ export function JwtDecoderTool() {
       )}
 
       {!jwtHeader && !jwtPayload && !jwtError && (
-        <div className="flex flex-col items-center justify-center gap-2 text-slate-500 flex-1 border border-dashed border-brand-border-dark/60 rounded py-12 select-none">
+        <div className="flex flex-col items-center justify-center gap-2 text-slate-500 flex-1 border border-dashed border-brand-border-dark/60 rounded py-12 px-4 text-center select-none">
           <FiLock className="text-4xl text-slate-700 animate-pulse" />
           <span className="text-xs">Paste an encoded token above to inspect its claims payload.</span>
         </div>

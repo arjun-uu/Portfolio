@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   FiHome, FiCode, FiFolder, FiBookOpen, FiBriefcase, 
   FiFileText, FiMail, FiGithub, FiSun, FiMoon, FiCornerDownLeft, FiTerminal 
@@ -24,11 +24,21 @@ interface CommandItem {
 
 export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { resolvedTheme, setTheme } = useTheme();
   const [search, setSearch] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+
+  // Close command palette on route changes (like browser back/forward or tab routing)
+  const lastLocationKey = useRef(location.key);
+  useEffect(() => {
+    if (isOpen && location.key !== lastLocationKey.current) {
+      onClose();
+    }
+    lastLocationKey.current = location.key;
+  }, [location.key, isOpen, onClose]);
 
   // Focus input on open
   useEffect(() => {

@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FiFolder, FiZap, FiCpu, FiAward } from 'react-icons/fi';
 import { siteConfig } from '../../../constants/site';
 import { localDevQuotes, Quote } from '../../../data/quotes';
+import { homeStatsData } from '../../../data/homeData';
+import { useAudio } from '../../../context/AudioContext';
 
 export function useHome() {
   const navigate = useNavigate();
   const [quote, setQuote] = useState<Quote>({ text: '', author: '' });
+  const audioContext = useAudio();
 
   useEffect(() => {
     // 1. Instantly select a random quote from our curated local database
@@ -29,17 +31,22 @@ export function useHome() {
       });
   }, []);
 
-  const stats = [
-    { label: "Projects Built", count: "20+", icon: FiFolder, color: "text-brand-accent-secondary bg-brand-accent-secondary/10 border-brand-accent-secondary/20" },
-    { label: "Years Coding", count: "3+", icon: FiZap, color: "text-brand-accent-primary bg-brand-accent-primary/10 border-brand-accent-primary/20" },
-    { label: "Technologies", count: "10+", icon: FiCpu, color: "text-brand-accent-purple bg-brand-accent-purple/10 border-brand-accent-purple/20" },
-    { label: "Learning Mode", count: "24/7", icon: FiAward, color: "text-brand-accent-orange bg-brand-accent-orange/10 border-brand-accent-orange/20" }
-  ];
+  const stats = homeStatsData;
 
   return {
     navigate,
     quote,
     stats,
-    availability: siteConfig.availability
+    availability: siteConfig.availability,
+    isPlaying: audioContext.isPlaying,
+    trackIndex: audioContext.trackIndex,
+    togglePlay: audioContext.togglePlay,
+    nextTrack: audioContext.nextTrack,
+    prevTrack: audioContext.prevTrack,
+    currentTrack: audioContext.currentTrack,
+    tracks: audioContext.tracks,
+    currentTimeStr: audioContext.currentTimeStr,
+    durationStr: audioContext.durationStr,
+    progressPercent: audioContext.progressPercent
   };
 }

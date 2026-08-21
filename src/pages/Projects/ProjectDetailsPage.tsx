@@ -102,7 +102,7 @@ export function ProjectDetailsPage() {
           <div className="flex-1 p-5 md:p-6 overflow-y-auto max-h-[500px]">
             {activeTab === 'readme' && <ReadmeHighlight project={project} />}
             {activeTab === 'problem' && <JsonHighlight project={project} />}
-            {activeTab === 'architecture' && <YamlHighlight content={project.architecture || ''} project={project} />}
+            {activeTab === 'architecture' && <YamlHighlight project={project} />}
             {activeTab === 'challenges' && <LogHighlight project={project} />}
           </div>
         </div>
